@@ -14,8 +14,7 @@
 
 void PostBlotsLoad();
 
-enum SHDK
-{
+enum SHDK : int {
     SHDK_Nil = -1,
     SHDK_ThreeWay = 0,
     SHDK_Prelit = 1,
@@ -32,8 +31,7 @@ enum SHDK
 };
 
 // Render Priority
-enum RP
-{
+enum RP : int {
     RP_Nil = -1,
     RP_DynamicTexture = 0,
     RP_Background = 1,
@@ -57,8 +55,7 @@ enum RP
 };
 
 // Shader animation type
-enum SAAK
-{
+enum SAAK : int {
     SAAK_Nil = -1,
     SAAK_None = 0,
     SAAK_Loop = 1,
@@ -72,8 +69,7 @@ enum SAAK
     SAAK_Max = 9
 };
 
-enum RKO
-{
+enum RKO : int {
     RKO_OneWay = 0,
     RKO_ThreeWay = 1
 };

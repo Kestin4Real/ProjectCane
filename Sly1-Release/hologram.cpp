@@ -45,5 +45,5 @@ void NotifyHologramRender(HOLOGRAM* phologram, ALO* palo, RPL* prpl)
 
 void DeleteHologram(HOLOGRAM* phologram)
 {
-    DeleteSaa(reinterpret_cast<SAA*>(phologram));
+    delete phologram;
 }

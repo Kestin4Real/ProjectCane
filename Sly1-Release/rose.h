@@ -1,8 +1,7 @@
 #pragma once
 #include "rip.h"
 
-enum ROSES 
-{
+enum ROSES : int {
     ROSES_Nil = -1,
     ROSES_Closing = 0,
     ROSES_Spinning = 1,

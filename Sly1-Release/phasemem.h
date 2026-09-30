@@ -1,7 +1,7 @@
 #pragma once
 
 // This is resposnible for handling the global game state
-enum PHASE {
+enum PHASE : int {
     PHASE_Nil = -1,
     PHASE_None = 0,
     PHASE_Startup = 1,

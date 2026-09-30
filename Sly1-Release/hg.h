@@ -1,8 +1,7 @@
 #pragma once
 #include "step.h"
 
-enum HGS
-{
+enum HGS : int {
     HGS_Nil = -1,
     HGS_Passive = 0,
     HGS_Stand = 1,

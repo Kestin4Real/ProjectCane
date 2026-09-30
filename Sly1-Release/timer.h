@@ -1,8 +1,7 @@
 #pragma once
 #include "blot.h"
 
-enum TIMERS
-{
+enum TIMERS : int {
     TIMERS_Nil = -1,
     TIMERS_Expired = 0,
     TIMERS_Paused = 1,

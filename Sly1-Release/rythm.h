@@ -2,8 +2,7 @@
 #include "po.h"
 #include <vector>
 
-enum RYTHMCOMMANDKIND
-{
+enum RYTHMCOMMANDKIND : int {
     RYTHMCOMMAND_AddMatch = 0,
     RYTHMCOMMAND_SpliceEvent = 1,
     RYTHMCOMMAND_EnableInput = 2,

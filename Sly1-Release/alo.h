@@ -16,8 +16,7 @@ struct ACTSEG;
 struct RO;
 struct BLOT;
 
-enum ACK
-{
+enum ACK : int {
 	ACK_Nil = -1,
 	ACK_None = 0,
 	ACK_Spring = 1,
@@ -48,7 +47,7 @@ enum MTLK : int
 	MTLK_NoFrictionElastic = 11,
 	MTLK_Max = 12
 };
-enum ZONS : unsigned int
+enum ZONS : int
 {
 	ZONS_Nil = -1,
 	ZONS_None = 0,
@@ -57,14 +56,14 @@ enum ZONS : unsigned int
 	ZONS_Max = 3
 };
 
-enum FREEZEMODE : unsigned int
+enum FREEZEMODE : int
 {
 	FREEZEMODE_Normal = 0,
 	FREEZEMODE_AlwaysBusy = 1,
 	FREEZEMODE_AlwaysFrozen = 2,
 	FREEZEMODE_Max = 3
 };
-enum VISS : unsigned int
+enum VISS : int
 {
 	VISS_Nil = -1,
 	VISS_None = 0,
@@ -72,7 +71,7 @@ enum VISS : unsigned int
 	VISS_Object = 2,
 	VISS_Max = 3
 };
-enum MRDS : unsigned int
+enum MRDS : int
 {
 	MRDS_Nil = -1,
 	MRDS_None = 0,
@@ -80,20 +79,18 @@ enum MRDS : unsigned int
 	MRDS_Object = 2,
 	MRDS_Max = 3
 };
-enum DMS : unsigned int
+enum DMS : int
 {
 	DMS_Normal = 0,
 	DMS_UseMat = 1
 };
-enum SCSK
-{
+enum SCSK : int {
 	SCSK_Nil = -1,
 	SCSK_Fixed = 0,
 	SCSK_Stretch = 1,
 	SCSK_Max = 2
 };
-enum THROBK
-{
+enum THROBK : int {
 	THROBK_Nil = -1,
 	THROBK_Pipe = 0,
 	THROBK_Ninja = 1,
@@ -104,8 +101,7 @@ enum THROBK
 	THROBK_Max = 6
 };
 
-enum CT
-{
+enum CT : int {
 	CT_Free = 0,
 	CT_Tangent = 1,
 	CT_Project = 2,
@@ -177,8 +173,7 @@ struct MSGDMG
 	LO* ploSource;
 };
 
-enum IAK
-{
+enum IAK : int {
 	IAK_Nil = -1,
 	IAK_Time = 0,
 	IAK_Proportion = 1,

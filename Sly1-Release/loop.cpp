@@ -85,5 +85,5 @@ float UCompleteLoop(LOOP* ploop)
 
 void DeleteLoop(LOOP* ploop)
 {
-    DeleteSaa(reinterpret_cast<SAA*>(ploop));
+    delete ploop;
 }

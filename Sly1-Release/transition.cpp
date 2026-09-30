@@ -4,7 +4,7 @@
 #include "difficulty.h"
 #include "chkpnt.h"
 #include "hubblot.h"
-#include <Windows.h>
+#include "host.h"
 
 namespace
 {
@@ -19,17 +19,6 @@ const char* WorldDirectoryName(int levelId)
         case GAMEWORLD_Clockwerk: return "The Cold Heart of Hate";
         default: return nullptr;
     }
-}
-
-std::filesystem::path ExecutableDirectory()
-{
-    wchar_t executablePath[MAX_PATH]{};
-    const DWORD length = GetModuleFileNameW(nullptr, executablePath, MAX_PATH);
-
-    if (length == 0 || length >= MAX_PATH)
-        return std::filesystem::current_path();
-
-    return std::filesystem::path(executablePath).parent_path();
 }
 
 std::filesystem::path FindWorldsDirectory(const std::string& currentFile)
@@ -51,13 +40,7 @@ std::filesystem::path FindWorldsDirectory(const std::string& currentFile)
         selectedPath.parent_path() / "Worlds",
         executableDirectory / "Worlds",
         std::filesystem::current_path() / "Worlds",
-        std::filesystem::current_path() / "Sly1-Release" / "Worlds",
-        std::filesystem::current_path() / "x64" / "Debug" / "Worlds",
-        std::filesystem::current_path() / "x64" / "Release" / "Worlds",
-        executableDirectory.parent_path().parent_path() / "x64" / "Debug" / "Worlds",
-        executableDirectory.parent_path().parent_path() / "x64" / "Release" / "Worlds",
-        executableDirectory.parent_path().parent_path().parent_path() / "x64" / "Debug" / "Worlds",
-        executableDirectory.parent_path().parent_path().parent_path() / "x64" / "Release" / "Worlds"
+        std::filesystem::current_path() / "Sly1-Release" / "Worlds"
     };
 
     for (const std::filesystem::path& candidate : candidates)
@@ -80,14 +63,7 @@ std::filesystem::path LevelPath(const LEVELINFO& levelInfo, const std::string& c
         ? "Paris"
         : levelInfo.levelName.c_str();
 
-    const std::filesystem::path fileName = std::string(levelName) + ".brx";
-    const std::filesystem::path organizedPath = directory / levelName / fileName;
-    if (std::filesystem::is_regular_file(organizedPath))
-        return organizedPath;
-
-    // Keep existing extracted trees usable while transitioning to the
-    // per-level directory layout.
-    return directory / fileName;
+    return directory / (std::string(levelName) + ".brx");
 }
 }
 
@@ -150,21 +126,11 @@ void CTransition::Execute(std::string& file)
 
         const bool fWorldChanged = m_plevelCurrent == nullptr || m_plevelCurrent->searchKey != plevelTarget->searchKey;
 
-        CBinaryInputStream bis;
-        try
-        {
-            bis.OpenFile(fileNew);
-        }
-        catch (const std::exception& exception)
-        {
-            std::printf("TRANSITION EXECUTE ERROR: %s\n", exception.what());
-            fLoadSucceeded = false;
-        }
+        CBinaryInputStream bis(fileNew);
 
-        if (!fLoadSucceeded || !bis.file.is_open())
+        if (!bis.file.is_open())
         {
-            if (fLoadSucceeded)
-                std::printf("TRANSITION EXECUTE ERROR: could not open '%s'\n", fileNew.c_str());
+            std::printf("TRANSITION EXECUTE ERROR: could not open '%s'\n", fileNew.c_str());
             fLoadSucceeded = false;
         }
         else

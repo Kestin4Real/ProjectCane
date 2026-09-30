@@ -6,8 +6,7 @@ class RYTHM;
 class RYTHMSEQUENCE;
 struct RYTHMCOMMAND;
 
-enum RUBYMUSICSTATE
-{
+enum RUBYMUSICSTATE : int {
     RUBYMUSICSTATE_Idle = 0,
     RUBYMUSICSTATE_WaitingForMusic = 1,
     RUBYMUSICSTATE_RestartRhythm = 2

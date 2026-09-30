@@ -1,8 +1,7 @@
 #pragma once
 #include "break.h"
 
-enum CANS 
-{
+enum CANS : int {
     CANS_Nil = -1,
     CANS_Auto = 0,
     CANS_Manual = 1,

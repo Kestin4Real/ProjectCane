@@ -1,8 +1,7 @@
 #pragma once
 #include "step.h"
 
-enum SGS
-{
+enum SGS : int {
     SGS_Nil = -1,
     SGS_Reset = 0,
     SGS_Patrol = 1,
@@ -24,8 +23,7 @@ enum SGS
     SGS_Max = 17
 };
 
-enum SGAS
-{
+enum SGAS : int {
     SGAS_Nil = -1,
     SGAS_No = 0,
     SGAS_Yes = 1,
@@ -79,8 +77,7 @@ struct SGP
     OID oidPhys;
     class SO* psoPhys;
 };
-enum RPK 
-{
+enum RPK : int {
     RPK_Nil = -1,
     RPK_Closest = 0,
     RPK_Previous = 1,
@@ -98,8 +95,7 @@ struct SGDA
     OID oidAseg;
     struct ASEG* paseg;
 };
-enum SGGS
-{
+enum SGGS : int {
     SGGS_Nil = -1,
     SGGS_Patrol = 0,
     SGGS_Search = 1,

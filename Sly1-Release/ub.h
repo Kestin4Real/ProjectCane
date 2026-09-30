@@ -1,8 +1,7 @@
 #pragma once
 #include "gomer.h"
 
-enum UBPS
-{
+enum UBPS : int {
     UBPS_Nil = -1,
     UBPS_Hidden = 0,
     UBPS_Idle = 1,
@@ -14,8 +13,7 @@ enum UBPS
     UBPS_PlaceBomb = 7,
     UBPS_Max = 8
 };
-enum UBVS
-{
+enum UBVS : int {
     UBVS_Nil = -1,
     UBVS_Idle = 0,
     UBVS_PlacePads = 1,

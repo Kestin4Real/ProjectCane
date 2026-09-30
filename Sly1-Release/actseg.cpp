@@ -98,6 +98,7 @@ void GetActsegPositionGoal(ACTSEG* pactseg, float dtOffset, glm::vec3* ppos, glm
     }
 
 	pacp->pvtacp->pfnEvaluateAcp(pacp, pactseg->palo, tLocal, pasega->svtLocal, 0, ppos, pv);
+
 }
 
 void GetActsegRotationGoal(ACTSEG* pactseg, float dtOffset, glm::mat3* pmat, glm::vec3* pw)
@@ -130,6 +131,7 @@ void GetActsegRotationGoal(ACTSEG* pactseg, float dtOffset, glm::mat3* pmat, glm
     }
 
     pacr->pvtacr->pfnEvaluateAcr(pacr, pactseg->palo, tLocal, pasega->svtLocal, 0, pmat, pw);
+
 }
 
 void GetActsegTwistGoal(ACTSEG* pactseg, float* pradTwist, float* pdradTwist)

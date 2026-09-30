@@ -1,38 +1,23 @@
 #include "glshaders.h"
 #include "resource1.h"
+#include "host.h"
 
+#ifdef _WIN32
+#ifndef NOMINMAX
+#define NOMINMAX
+#endif
 #include <Windows.h>
-#include <cstdio>
+#endif
 #include <cstring>
-#include <iostream>
+#include <filesystem>
+#include <fstream>
+#include <iterator>
 #include <stdexcept>
+#include <vector>
 
 namespace
 {
-	void ShowShaderErrorConsole()
-	{
-		static bool initialized = false;
-		if (initialized)
-			return;
-
-		initialized = true;
-		if (GetConsoleWindow() == nullptr && AllocConsole() == FALSE)
-			return;
-
-		FILE* stream = nullptr;
-		freopen_s(&stream, "CONOUT$", "w", stdout);
-		freopen_s(&stream, "CONOUT$", "w", stderr);
-		std::cout.clear();
-		std::cerr.clear();
-		SetConsoleTitleW(L"ProjectCane - Shader Error");
-
-		if (HWND consoleWindow = GetConsoleWindow())
-		{
-			ShowWindow(consoleWindow, SW_SHOW);
-			SetForegroundWindow(consoleWindow);
-		}
-	}
-
+#ifdef _WIN32
 	int ShaderResourceId(const char* filename)
 	{
 		struct ShaderResource
@@ -67,9 +52,23 @@ namespace
 
 		return 0;
 	}
+#endif
+
+	std::string StripShaderBom(std::string source)
+	{
+		if (source.size() >= 3 &&
+			static_cast<unsigned char>(source[0]) == 0xef &&
+			static_cast<unsigned char>(source[1]) == 0xbb &&
+			static_cast<unsigned char>(source[2]) == 0xbf)
+		{
+			source.erase(0, 3);
+		}
+		return source;
+	}
 
 	std::string GetEmbeddedShaderSource(const char* filename)
 	{
+#ifdef _WIN32
 		const int resourceId = ShaderResourceId(filename);
 		if (resourceId == 0)
 			throw std::runtime_error(std::string("Unknown embedded shader: ") + filename);
@@ -84,22 +83,31 @@ namespace
 		if (loadedResource == nullptr || resourceData == nullptr || resourceSize == 0)
 			throw std::runtime_error(std::string("Embedded shader resource could not be loaded: ") + filename);
 
-		const char* source = static_cast<const char*>(resourceData);
-		size_t sourceSize = resourceSize;
-
-		// Some editors save GLSL as UTF-8 with a BOM. NVIDIA accepts the BOM
-		// before #version, but AMD's GLSL compiler treats it as an unexpected
-		// token. Strip it after loading so the embedded resource is portable.
-		if (sourceSize >= 3 &&
-			static_cast<unsigned char>(source[0]) == 0xef &&
-			static_cast<unsigned char>(source[1]) == 0xbb &&
-			static_cast<unsigned char>(source[2]) == 0xbf)
+		return StripShaderBom(std::string(static_cast<const char*>(resourceData), resourceSize));
+#else
+		const std::filesystem::path candidates[] =
 		{
-			source += 3;
-			sourceSize -= 3;
+#ifdef SLY1_SHADER_DIR
+			std::filesystem::path(SLY1_SHADER_DIR) / filename,
+#endif
+			ExecutableDirectory() / filename,
+			std::filesystem::current_path() / filename,
+			std::filesystem::current_path() / "Sly1-Release" / filename
+		};
+
+		for (const std::filesystem::path& path : candidates)
+		{
+			std::ifstream stream(path);
+			if (!stream)
+				continue;
+			std::string source((std::istreambuf_iterator<char>(stream)),
+				std::istreambuf_iterator<char>());
+			if (!source.empty())
+				return StripShaderBom(std::move(source));
 		}
 
-		return std::string(source, sourceSize);
+		throw std::runtime_error(std::string("Shader file was not found: ") + filename);
+#endif
 	}
 }
 
@@ -201,13 +209,12 @@ void GLSHADER::compileErrors(unsigned int shader, const char* type)
 	GLint hasCompiled;
 	char infoLog[1024];
 
-	if (std::strcmp(type, "PROGRAM") != 0)
+	if (type != "PROGRAM")
 	{
 		glGetShaderiv(shader, GL_COMPILE_STATUS, &hasCompiled);
 		if (hasCompiled == GL_FALSE)
 		{
 			glGetShaderInfoLog(shader, 1024, NULL, infoLog);
-			ShowShaderErrorConsole();
 			std::cout << "SHADER_COMPILATION_ERROR for:" << type << "\n" << infoLog << std::endl;
 		}
 	}
@@ -218,7 +225,6 @@ void GLSHADER::compileErrors(unsigned int shader, const char* type)
 		if (hasCompiled == GL_FALSE)
 		{
 			glGetProgramInfoLog(shader, 1024, NULL, infoLog);
-			ShowShaderErrorConsole();
 			std::cout << "SHADER_LINKING_ERROR for:" << type << "\n" << infoLog << std::endl;
 		}
 	}

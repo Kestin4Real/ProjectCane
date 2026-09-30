@@ -8,8 +8,7 @@
 #include <unordered_map>
 #include "game.h"
 
-enum BLOTS
-{
+enum BLOTS : int {
     BLOTS_Nil = -1,
     BLOTS_Hidden = 0,
     BLOTS_Appearing = 1,
@@ -17,8 +16,7 @@ enum BLOTS
     BLOTS_Disappearing = 3,
     BLOTS_Max = 4
 };
-enum BLOTK
-{
+enum BLOTK : int {
     BLOTK_Nil = -1,
     BLOTK_Letterbox = 0,
     BLOTK_Binoc = 1,
@@ -59,8 +57,7 @@ enum BLOTK
     BLOTK_Percent = 36,
     BLOTK_Max = 37
 };
-enum BLOTE
-{
+enum BLOTE : int {
     BLOTE_Nil = -1,
     BLOTE_Left = 0,
     BLOTE_Right = 1,
@@ -180,8 +177,6 @@ void  UpdateBlotActive(BLOT* pblot, JOY* pjoy);
 void  UpdateBlots();
 void  DrawBlot(BLOT *pblot);
 void  GetGuiScaledBlotRect(BLOT* pblot, float* px, float* py, float* pdx, float* pdy);
-void  GetGuiScaledBlotRect(BLOT* pblot, float scaleSetting,
-    float* px, float* py, float* pdx, float* pdy);
 void  RenderBlots();
 void  DrawBlots();
 void  ResetBlots();

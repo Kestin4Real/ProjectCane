@@ -12,8 +12,7 @@
 #include "imgui/ImGuiFileDialog.h"
 #include "mouse.h"
 
-enum AspectMode
-{
+enum AspectMode : int {
 	FitToScreen,
 	Fixed_4_3,
 	Fixed_16_9,
@@ -22,15 +21,13 @@ enum AspectMode
 	PS2_16_9,
 };
 
-enum WindowMode
-{
+enum WindowMode : int {
 	WindowMode_Windowed,
 	WindowMode_Borderless,
 	WindowMode_Fullscreen
 };
 
-enum GuiStyle
-{
+enum GuiStyle : int {
 	GuiStyle_PS2,
 	GuiStyle_Modern
 };

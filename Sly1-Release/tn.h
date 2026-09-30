@@ -2,10 +2,9 @@
 #include "shape.h"
 #include "alo.h"
 
-enum FTND;
+enum FTND : int;
 
-enum TNS
-{
+enum TNS : int {
 	TNS_Nil = -1,
 	TNS_Out = 0,
 	TNS_In = 1,

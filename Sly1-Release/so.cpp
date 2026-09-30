@@ -10,8 +10,12 @@
 #ifndef NOMINMAX
 #define NOMINMAX
 #endif
+#ifdef _WIN32
 #include <Windows.h>
+#endif
+#if defined(_MSC_VER)
 #include <intrin.h>
+#endif
 #include <cstdio>
 #include <limits>
 

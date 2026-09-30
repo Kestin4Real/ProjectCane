@@ -1,8 +1,7 @@
 #pragma once
 #include "so.h"
 
-enum BDT 
-{
+enum BDT : int {
 	BDT_Nil = -1,
 	BDT_Impact = 0,
 	BDT_Timed = 1,
@@ -20,8 +19,7 @@ struct BOMBCUSTOMXP
 	SO* psoOther;
 };
 
-enum BDM
-{
+enum BDM : int {
 	BDM_SurfaceNormal = 0,
 	BDM_Velocity = 1,
 	BDM_LocalMatrix = 2

@@ -1,8 +1,7 @@
 #pragma once
 #include "alo.h"
 
-enum ROPEK 
-{
+enum ROPEK : int {
     ROPEK_Nil = -1,
     ROPEK_FixedLength = 0,
     ROPEK_FixedSlack = 1,

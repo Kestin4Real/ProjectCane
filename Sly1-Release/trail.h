@@ -1,8 +1,7 @@
 #pragma once
 #include "rip.h"
 
-enum TRLS 
-{
+enum TRLS : int {
     TRLS_Nil = -1,
     TRLS_None = 0,
     TRLS_TrackingRip = 1,

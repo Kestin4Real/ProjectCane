@@ -160,5 +160,5 @@ void SetEyesEyess(EYES* peyes, EYESS eyess)
 
 void DeleteEyes(EYES* peyes)
 {
-    DeleteSaa(reinterpret_cast<SAA*>(peyes));
+    delete peyes;
 }

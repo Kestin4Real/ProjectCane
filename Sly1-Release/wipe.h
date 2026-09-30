@@ -2,8 +2,7 @@
 #include "transition.h"
 #include "game.h"
 
-enum WIPES
-{
+enum WIPES : int {
     WIPES_Nil = -1,
     WIPES_Idle = 0,
     WIPES_WipingOut = 1,
@@ -11,8 +10,7 @@ enum WIPES
     WIPES_WipingIn = 3,
     WIPES_Max = 4
 };
-enum WIPEK
-{
+enum WIPEK : int {
     WIPEK_Nil = -1,
     WIPEK_Fade = 0,
     WIPEK_Keyhole = 1,

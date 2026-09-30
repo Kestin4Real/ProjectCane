@@ -1,15 +1,13 @@
 #pragma once
 #include "jt.h"
 
-enum SENSM
-{
+enum SENSM : int {
     SENSM_Nil = -1,
     SENSM_SenseOnly = 0,
     SENSM_DamageTarget = 1,
     SENSM_Max = 2
 };
-enum SENSORS
-{
+enum SENSORS : int {
     SENSORS_Nil = -1,
     SENSORS_SenseEnabling = 0,
     SENSORS_SenseEnabled = 1,
@@ -22,8 +20,7 @@ enum SENSORS
     SENSORS_Disabled = 8,
     SENSORS_Max = 9
 };
-enum LASK 
-{
+enum LASK : int {
     LASK_Nil = -1,
     LASK_Dynamic = 0,
     LASK_Static = 1,
@@ -46,15 +43,13 @@ struct LBEAM
     int clemitDamage;
     struct LEMIT alemitDamage[4];
 };
-enum PSSAT
-{
+enum PSSAT : int {
     PSSAT_Nil = -1,
     PSSAT_Loop = 0,
     PSSAT_PingPong = 1,
     PSSAT_Max = 2
 };
-enum CSDTS
-{
+enum CSDTS : int {
     CSDTS_Nil = -1,
     CSDTS_Focus = 0,
     CSDTS_Zap = 1,

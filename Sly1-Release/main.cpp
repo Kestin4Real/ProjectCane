@@ -9,44 +9,15 @@
 #include "fmv.h"
 #include "sound.h"
 #include "tv.h"
-#include <atomic>
-#include <cwchar>
-#include <filesystem>
 #include <iostream>
-#include <thread>
 
 #ifdef _WIN32
 #define GLFW_EXPOSE_NATIVE_WIN32
 #include <GLFW/glfw3native.h>
 #endif
 
-bool g_fDeveloperDebugMode = false;
-
 namespace
 {
-void LoadDebugModeSetting()
-{
-	wchar_t executablePath[MAX_PATH]{};
-	const DWORD pathLength = GetModuleFileNameW(nullptr, executablePath, MAX_PATH);
-	const std::filesystem::path baseDirectory = pathLength != 0
-		? std::filesystem::path(executablePath).parent_path()
-		: std::filesystem::current_path();
-	const std::filesystem::path iniPath = baseDirectory / L"Debug Mode.ini";
-
-	if (!std::filesystem::is_regular_file(iniPath))
-	{
-		WritePrivateProfileStringW(L"Debug", L"Debug Mode", L"0", iniPath.c_str());
-		g_fDeveloperDebugMode = false;
-		return;
-	}
-
-	wchar_t value[32]{};
-	GetPrivateProfileStringW(L"Debug", L"Debug Mode", L"0", value,
-		static_cast<DWORD>(sizeof(value) / sizeof(value[0])), iniPath.c_str());
-	g_fDeveloperDebugMode =
-		_wcsicmp(value, L"true") == 0 || std::wcstol(value, nullptr, 10) != 0;
-}
-
 class FramePacer
 {
 public:
@@ -55,6 +26,7 @@ public:
     FramePacer()
         : m_deadline(Clock::now())
     {
+#ifdef _WIN32
         // CREATE_WAITABLE_TIMER_HIGH_RESOLUTION is 0x2. Use the value directly
         // so this still builds with Windows SDKs that predate the named flag.
         m_timer = CreateWaitableTimerExW(
@@ -63,13 +35,16 @@ public:
         if (m_timer == nullptr)
             m_timer = CreateWaitableTimerExW(
                 nullptr, nullptr, 0, TIMER_MODIFY_STATE | SYNCHRONIZE);
+#endif
     }
 
+#ifdef _WIN32
     ~FramePacer()
     {
         if (m_timer != nullptr)
             CloseHandle(m_timer);
     }
+#endif
 
     void Wait()
     {
@@ -97,6 +72,7 @@ public:
         const auto coarseDeadline = m_deadline - kSpinMargin;
         if (now < coarseDeadline)
         {
+#ifdef _WIN32
             if (m_timer != nullptr)
             {
                 const auto wait100ns = std::chrono::duration_cast<
@@ -112,20 +88,20 @@ public:
                     std::this_thread::sleep_until(coarseDeadline);
             }
             else
+#endif
             {
                 std::this_thread::sleep_until(coarseDeadline);
             }
         }
 
-        // YieldProcessor is a CPU pause hint, not a scheduler yield. It keeps
-        // the final sub-millisecond boundary precise without giving up a full
-        // Windows scheduling quantum.
         while (Clock::now() < m_deadline)
             YieldProcessor();
     }
 
 private:
+#ifdef _WIN32
     HANDLE m_timer = nullptr;
+#endif
     Clock::time_point m_deadline;
     int m_frameRate = 60;
 };
@@ -152,7 +128,7 @@ void RunGameFrame()
         ExecutePendingCutscenes();
 
     static bool s_fF3WasDown = false;
-	const bool fF3Down = g_fDeveloperDebugMode && g_gl.window != nullptr &&
+    const bool fF3Down = g_gl.window != nullptr &&
         glfwGetKey(g_gl.window, GLFW_KEY_F3) == GLFW_PRESS;
     if (fF3Down && !s_fF3WasDown)
     {
@@ -232,49 +208,21 @@ void RunGameFrame()
 
 #ifdef _WIN32
 WNDPROC s_glfwWindowProc = nullptr;
-constexpr UINT kRunTrackedWindowFrame = WM_APP + 0x504;
-std::atomic_bool s_windowTracking = false;
-std::atomic_bool s_windowFrameThreadRunning = false;
-HWND s_gameWindow = nullptr;
-std::thread s_windowFrameThread;
-
-void WindowFrameThreadMain()
-{
-	while (s_windowFrameThreadRunning.load(std::memory_order_acquire))
-	{
-		if (s_windowTracking.load(std::memory_order_acquire) && s_gameWindow != nullptr)
-		{
-			DWORD_PTR result = 0;
-			SendMessageTimeoutW(s_gameWindow, kRunTrackedWindowFrame, 0, 0,
-				SMTO_ABORTIFHUNG | SMTO_BLOCK, 50, &result);
-		}
-
-		std::this_thread::sleep_for(std::chrono::milliseconds(16));
-	}
-}
+constexpr UINT_PTR kLiveResizeTimer = 0x5043;
 
 LRESULT CALLBACK LiveResizeWindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-	// Keep Windows' native caption-button behavior. Its private tracking loop
-	// blocks GLFW's outer loop, so the helper thread sends this window a frame
-	// request which Windows dispatches back on the original OpenGL thread.
-	if (message == WM_NCLBUTTONDOWN &&
-		(wParam == HTMINBUTTON || wParam == HTMAXBUTTON || wParam == HTCLOSE))
-	{
-		s_windowTracking.store(true, std::memory_order_release);
-		const LRESULT result = CallWindowProcW(s_glfwWindowProc, hwnd, message, wParam, lParam);
-		s_windowTracking.store(false, std::memory_order_release);
-		return result;
-	}
-
     switch (message)
     {
         case WM_ENTERSIZEMOVE:
-		s_windowTracking.store(true, std::memory_order_release);
-		break;
+        {
+            const UINT intervalMs = static_cast<UINT>((std::max)(1, 1000 / (std::max)(1, g_targetFrameRate)));
+            SetTimer(hwnd, kLiveResizeTimer, intervalMs, nullptr);
+            break;
+        }
 
-        case kRunTrackedWindowFrame:
-        if (s_windowTracking.load(std::memory_order_acquire))
+        case WM_TIMER:
+        if (wParam == kLiveResizeTimer)
         {
             RunGameFrame();
             return 0;
@@ -282,11 +230,8 @@ LRESULT CALLBACK LiveResizeWindowProc(HWND hwnd, UINT message, WPARAM wParam, LP
         break;
 
         case WM_EXITSIZEMOVE:
-		s_windowTracking.store(false, std::memory_order_release);
-		break;
-
         case WM_DESTROY:
-		s_windowTracking.store(false, std::memory_order_release);
+        KillTimer(hwnd, kLiveResizeTimer);
         break;
     }
 
@@ -301,29 +246,24 @@ void InstallLiveResizeWindowProc()
 
     s_glfwWindowProc = reinterpret_cast<WNDPROC>(GetWindowLongPtrW(hwnd, GWLP_WNDPROC));
     SetWindowLongPtrW(hwnd, GWLP_WNDPROC, reinterpret_cast<LONG_PTR>(LiveResizeWindowProc));
-	s_gameWindow = hwnd;
-	s_windowFrameThreadRunning.store(true, std::memory_order_release);
-	s_windowFrameThread = std::thread(WindowFrameThreadMain);
-}
-
-void ShutdownLiveResizeWindowProc()
-{
-	s_windowTracking.store(false, std::memory_order_release);
-	s_windowFrameThreadRunning.store(false, std::memory_order_release);
-	if (s_windowFrameThread.joinable())
-		s_windowFrameThread.join();
 }
 #endif
 }
 
 #ifdef NDEBUG
+#ifdef _WIN32
 int WINAPI wWinMain(HINSTANCE, HINSTANCE, PWSTR, int)
+#else
+int main(int, char**)
+#endif
 #else
 int main(int cphzArgs, char* aphzArgs[])
 #endif
 {
     Startup();
+#ifdef _WIN32
     SetThreadPriority(GetCurrentThread(), THREAD_PRIORITY_ABOVE_NORMAL);
+#endif
     FramePacer framePacer;
 #ifdef _WIN32
 	InstallLiveResizeWindowProc();
@@ -331,18 +271,14 @@ int main(int cphzArgs, char* aphzArgs[])
 
     while (!glfwWindowShouldClose(g_gl.window) && fQuitGame != true)
     {
+        glfwPollEvents();
 		RunGameFrame();
-		glfwPollEvents();
 
         // This remains authoritative with VSync on or off. VSync controls
         // presentation; it no longer changes the game's update frequency.
         framePacer.Wait();
 
     }
-
-#ifdef _WIN32
-	ShutdownLiveResizeWindowProc();
-#endif
 
     if (g_psw != nullptr)
         DeleteWorld(g_psw);
@@ -355,9 +291,6 @@ int main(int cphzArgs, char* aphzArgs[])
 
 void Startup()
 {
-	// Debug mode is intentionally sampled once. Editing the INI while running
-	// takes effect only after restarting the program.
-	LoadDebugModeSetting();
     g_gl.InitGL();
     glfwSwapInterval(g_fVsync ? 1 : 0);
 

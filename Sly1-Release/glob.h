@@ -10,15 +10,13 @@
 struct SHD;
 struct SAI;
 
-enum TWPS
-{
+enum TWPS : int {
 	TWPS_Shadow = 0,
 	TWPS_ShadowMidtone = 1,
 	TWPS_ShadowMidtoneSaturate = 2
 };
 
-enum RTCK
-{
+enum RTCK : int {
 	RTCK_Nil = -1,
 	RTCK_None = 0,
 	RTCK_All = 1,
@@ -29,8 +27,7 @@ enum RTCK
 	RTCK_Max = 6
 };
 
-enum WEK
-{
+enum WEK : int {
 	WEK_Nil = -1,
 	WEK_XYZ = 0,
 	WEK_XY = 1,
@@ -42,16 +39,14 @@ enum WEK
 	WEK_Max = 7
 };
 
-enum WARPTYPE
-{
+enum WARPTYPE : int {
 	WARP_NONE = 0,
 	WARP_POS = 1,
 	WARP_UV = 2,
 	WARP_BOTH = 3
 };
 
-enum TRLK
-{
+enum TRLK : int {
 	TRLK_Relight = 0,
 	TRLK_Baked = 1,
 	TRLK_Dynamic = 2,

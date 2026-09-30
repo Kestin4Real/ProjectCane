@@ -8,16 +8,14 @@ struct ACG;
 #include "lo.h"
 #include "bez.h"
 
-enum ACVK
-{
+enum ACVK : int {
     ACVK_Nil = -1,
     ACVK_Component = 0,
     ACVK_Bezier = 1,
     ACVK_Blend = 2,
     ACVK_Max = 3
 };
-enum ACGK
-{
+enum ACGK : int {
     ACGK_Nil = -1,
     ACGK_Bezier = 0,
     ACGK_BezierWeighted = 1,
@@ -26,8 +24,7 @@ enum ACGK
     ACGK_BlendPose = 4,
     ACGK_Max = 5
 };
-enum KGBTK
-{
+enum KGBTK : int {
     KGBTK_Nil = -1,
     KGBTK_Global = 0,
     KGBTK_Fixed = 1,

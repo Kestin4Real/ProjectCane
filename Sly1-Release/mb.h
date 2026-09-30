@@ -1,8 +1,7 @@
 #pragma once
 #include "stepguard.h"
 
-enum MBAK 
-{
+enum MBAK : int {
     MBAK_Nil = -1,
     MBAK_Gun = 0,
     MBAK_Grenade = 1,

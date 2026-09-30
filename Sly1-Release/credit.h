@@ -1,8 +1,7 @@
 #pragma once
 #include "blot.h"
 
-enum MTSSTATE 
-{
+enum MTSSTATE : int {
     MTSSTATE_None = 0,
     MTSSTATE_Eligible = 1,
     MTSSTATE_Active = 2,

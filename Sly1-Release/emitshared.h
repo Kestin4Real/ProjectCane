@@ -4,8 +4,7 @@
 
 class ALO;
 
-enum EMITCNK
-{
+enum EMITCNK : int {
     EMITCNK_Nil = -1,
     EMITCNK_World = 0,
     EMITCNK_Local = 1,

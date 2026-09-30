@@ -1,15 +1,13 @@
 #pragma once
 #include "so.h"
 
-enum CSPK 
-{
+enum CSPK : int {
     CSPK_Nil = -1,
     CSPK_AutoCycle = 0,
     CSPK_Manual = 1,
     CSPK_Max = 2
 };
-enum RWMTK 
-{
+enum RWMTK : int {
     RWMTK_Nil = -1,
     RWMTK_Current = 0,
     RWMTK_Predict = 1,
@@ -17,8 +15,7 @@ enum RWMTK
     RWMTK_Max = 3
 };
 
-enum RWMCLONEK
-{
+enum RWMCLONEK : int {
     RWMCLONEK_Nil = 0,
     RWMCLONEK_Base = 1,
     RWMCLONEK_Clone = 2

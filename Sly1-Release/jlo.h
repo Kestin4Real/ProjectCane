@@ -1,8 +1,7 @@
 #pragma once
 #include "button.h"
 
-enum JLOS 
-{
+enum JLOS : int {
     JLOS_Nil = -1,
     JLOS_Jump = 0,
     JLOS_Land = 1,
@@ -11,15 +10,13 @@ enum JLOS
     JLOS_Taunt = 4,
     JLOS_Max = 5
 };
-enum JLOCK 
-{
+enum JLOCK : int {
     JLOCK_Nil = -1,
     JLOCK_Closest = 0,
     JLOCK_Random = 1,
     JLOCK_Max = 2
 };
-enum JLOMK 
-{
+enum JLOMK : int {
     JLOMK_Nil = -1,
     JLOMK_Straight = 0,
     JLOMK_Lobbed = 1,

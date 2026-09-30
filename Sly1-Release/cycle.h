@@ -16,8 +16,7 @@ struct SXP
     float cParticleDirt;
     float cParticleDust;
 };
-enum CYCLES 
-{
+enum CYCLES : int {
     CYCLES_Nil = -1,
     CYCLES_Brake = 0,
     CYCLES_Accelerate = 1,

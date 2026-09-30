@@ -2,15 +2,13 @@
 #include "blot.h"
 #include "util.h"
 
-enum TVS
-{
+enum TVS : int {
     TVS_Nil = -1,
     TVS_Listen = 0,
     TVS_Talk = 1,
     TVS_Max = 2
 };
-enum TVGS 
-{
+enum TVGS : int {
     TVGS_Nil = -1,
     TVGS_Opening = 0,
     TVGS_Open = 1,

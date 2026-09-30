@@ -5,16 +5,14 @@
 #include "shd.h"
 #include "gl.h"
 
-enum JH
-{
+enum JH : int {
     JH_Nil = -1,
     JH_Left = 0,
     JH_Center = 1,
     JH_Right = 2,
     JH_Max = 3
 };
-enum JV
-{
+enum JV : int {
     JV_Nil = -1,
     JV_Top = 0,
     JV_Center = 1,

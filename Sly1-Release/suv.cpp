@@ -397,7 +397,8 @@ void PostSuvLoad(SUV* psuv)
 
 void PresetSuvAccel(SUV* psuv, float dt)
 {
-    PresetSoAccel(psuv, dt);
+    PresetSoAccel((SO*)psuv, dt);
+
 
     if (g_clock.t - psuv->tUpright > DT_SuvUpright && g_clock.t - psuv->tPunched > DT_SuvPunched) {
         glm::mat3 matUpright;

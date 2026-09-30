@@ -1,15 +1,13 @@
 #pragma once
 #include "so.h"
 
-enum FLYK 
-{
+enum FLYK : int {
     FLYK_Nil = -1,
     FLYK_Insect = 0,
     FLYK_Pigeon = 1,
     FLYK_Max = 2
 };
-enum FLYS 
-{
+enum FLYS : int {
     FLYS_Nil = -1,
     FLYS_Wander = 0,
     FLYS_Dying = 1,

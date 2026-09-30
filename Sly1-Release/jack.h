@@ -1,8 +1,7 @@
 #pragma once
 #include "step.h"
 
-enum JBS 
-{
+enum JBS : int {
     JBS_Nil = -1,
     JBS_Chase = 0,
     JBS_Spike = 1,
@@ -10,16 +9,14 @@ enum JBS
     JBS_Taunt = 3,
     JBS_Max = 4
 };
-enum JBWS
-{
+enum JBWS : int {
     JBWS_Nil = -1,
     JBWS_PlantLeft = 0,
     JBWS_PlantRight = 1,
     JBWS_PlantNone = 2,
     JBWS_Max = 3
 };
-enum JACKS
-{
+enum JACKS : int {
     JACKS_Nil = -1,
     JACKS_Rim = 0,
     JACKS_Gap = 1,
@@ -105,6 +102,7 @@ class JACKB : public ALO
     glm::vec3 posNextPlant;
 };
 
+enum JK : int;
 class JACKF : public ALO
 {
 	public:

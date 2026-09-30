@@ -5,8 +5,7 @@
 struct CHKMGR;
 struct CHKPNT;
 
-enum DPS 
-{
+enum DPS : int {
     DPS_Nil = -1,
     DPS_Normal = 0,
     DPS_GivenCharms = 1,

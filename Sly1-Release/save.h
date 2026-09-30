@@ -4,8 +4,7 @@
 
 inline constexpr int SAVE_SLOT_COUNT = 6;
 
-enum SAVEMENUSTATE
-{
+enum SAVEMENUSTATE : int {
     SAVE_MENU_STATE_Nil = 0,
     SAVE_MENU_STATE_Selecting = 1,
     SAVE_MENU_STATE_Closing = 2
@@ -33,10 +32,6 @@ struct VIDEOSAVESETTINGS
     int gamepadBindings[BTN_MAX];
     int disableControllerInputWhenUnfocused;
     int lastSaveSlot;
-    int stereoEnabled;
-    float musicVolume;
-    float soundEffectsVolume;
-    float dialogueVolume;
 };
 
 struct SAVEDATA

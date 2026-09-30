@@ -41,5 +41,5 @@ void UpdateShuffle(SHUFFLE* pshuffle, float dt)
 
 void DeleteShuffle(SHUFFLE* pshuffle)
 {
-    DeleteSaa(reinterpret_cast<SAA*>(pshuffle));
+    delete pshuffle;
 }

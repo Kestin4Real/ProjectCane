@@ -1,4 +1,5 @@
 ﻿#include "gl.h"
+#include "Input.h"
 #include "render.h"
 #include "sqtr.h"
 #include "shadow.h"
@@ -101,6 +102,9 @@ void GL::InitGL()
 	}
 
 	glfwMakeContextCurrent(window);
+	glfwFocusWindow(window);
+	glfwSetInputMode(window, GLFW_STICKY_KEYS, GLFW_TRUE);
+	glfwSetInputMode(window, GLFW_STICKY_MOUSE_BUTTONS, GLFW_TRUE);
 	glfwSetFramebufferSizeCallback(window, FrameBufferSizeCallBack);
 	glfwSetCursorPosCallback(window, MOUSE::CursorPosCallback);
 	glfwSetMouseButtonCallback(window, MOUSE::MouseButtonCallback);

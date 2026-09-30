@@ -4,8 +4,7 @@
 #include "rip.h"
 #include "crv.h"
 
-enum EMITRK 
-{
+enum EMITRK : int {
     EMITRK_Nil = -1,
     EMITRK_Continuous = 0,
     EMITRK_ConstantCount = 1,
@@ -13,8 +12,7 @@ enum EMITRK
     EMITRK_BurstOld = 3,
     EMITRK_Max = 4
 };
-enum EMITVK
-{
+enum EMITVK : int {
     EMITVK_Nil = -1,
     EMITVK_Relative = 0,
     EMITVK_RelativeSpin = 1,
@@ -22,8 +20,7 @@ enum EMITVK
     EMITVK_World = 3,
     EMITVK_Max = 4
 };
-enum EMITNK
-{
+enum EMITNK : int {
     EMITNK_Nil = -1,
     EMITNK_Normal = 0,
     EMITNK_Radial = 1,
@@ -33,8 +30,7 @@ enum EMITNK
     EMITNK_MeshNormal = 5,
     EMITNK_Max = 6
 };
-enum EMITOK 
-{
+enum EMITOK : int {
     EMITOK_Nil = -1,
     EMITOK_Point = 0,
     EMITOK_Box = 1,
@@ -43,15 +39,13 @@ enum EMITOK
     EMITOK_Mesh = 4,
     EMITOK_Max = 5
 };
-enum EMITPK 
-{
+enum EMITPK : int {
     EMITPK_Nil = -1,
     EMITPK_Blip = 0,
     EMITPK_Rip = 1,
     EMITPK_Max = 2
 };
-enum BLIPRK 
-{
+enum BLIPRK : int {
     BLIPRK_Nil = -1,
     BLIPRK_Mirror = 0,
     BLIPRK_NoMirror = 1,
@@ -151,16 +145,14 @@ struct EMITV
     LM lmDtBirth;
     CLQ clqAlpha;
 };
-enum BLIPMK
-{
+enum BLIPMK : int {
     BLIPMK_Nil = -1,
     BLIPMK_Accel = 0,
     BLIPMK_Constant = 1,
     BLIPMK_Spline = 2,
     BLIPMK_Max = 3
 };
-enum BLIPOK
-{
+enum BLIPOK : int {
     BLIPOK_Nil = -1,
     BLIPOK_Fixed = 0,
     BLIPOK_Flying = 1,

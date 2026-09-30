@@ -114,16 +114,12 @@ struct AMB
     int grainsToSkip;
     bool handlerDone;
     bool skipGrains;
-    bool paused = false;
     std::array<int8_t, 4> registers;
     std::array<EFFECTLFO, 4> lfos;
     int lfoVolume = 0;
     int lfoPan = 0;
     int lfoPitchMod = 0;
     int lfoPitchBend = 0;
-    float autoVolumeScale = 1.0f;
-    int autoVolumeTicks = 0;
-    int autoVolumeTicksRemaining = 0;
     struct AMB* parent = nullptr;
     std::vector<struct AMB*> children;
     float tNext;
@@ -352,8 +348,7 @@ struct DecodedEffectSample
     bool loop = false;
 };
 
-enum EffectEnvelopePhase
-{
+enum EffectEnvelopePhase : int {
     EffectEnvelope_Attack,
     EffectEnvelope_Decay,
     EffectEnvelope_Sustain,
@@ -463,25 +458,16 @@ void HandleWipeVolumes(int fMusicWipes, float u);
 void ResetCommentaryAudio();
 void SetAttractVolume(bool fMuted);
 void SetAttractSoundOption(bool fMono);
-void SetUserStereoEnabled(bool enabled);
-bool FUserStereoEnabled();
-void SetUserMusicVolume(float volume);
-float GetUserMusicVolume();
-void SetUserSfxVolume(float volume);
-float GetUserSfxVolume();
-void SetUserDialogueVolume(float volume);
-float GetUserDialogueVolume();
 void StopVag();
 void SetMvgkRvol(float uVol, int mgvk, int iChannel);
 void ResumeVag();
 void PauseVag();
 void ContinueVag();
-void BeginDialogAudioDuck();
-void EndDialogAudioDuck();
 void PauseMusicSequencer();
 void ContinueMusicSequencer();
-bool FMusicSequencerPaused();
 void PreloadVag(const char* filename);
+bool StartCutsceneAudio(const std::filesystem::path& path);
+void StopCutsceneAudio();
 void PushSwReverb(SW* psw, REVERBK rvrbk, int depth);
 void PopSwReverb(SW* psw);
 void PlayCommentaryAudio(char* audioFileLocation);
@@ -504,11 +490,9 @@ void StartupSound();
 void ShutdownSound();
 void InitializeSoundOptions();
 void SetMasterVolume(float uVol);
-float GetMasterVolume();
-void SetFmvAudioMode(bool enabled);
 void SetSwIntermittentSound(SW* psw, SFXID sfxid);
-void SetSwIntermittentVolPct(SW* psw, const LM* plmVolPct);
-void SetSwIntermittentRepeat(SW* psw, const LM* plmRepeat);
+void SetSwIntermittentVolPct(SW* psw, LM plmVolPct);
+void SetSwIntermittentRepeat(SW* psw, LM plmRepeat);
 void StartSwIntermittentSounds(SW* psw);
 void UpdateSounds();
 

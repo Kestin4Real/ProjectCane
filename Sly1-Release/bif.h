@@ -3,8 +3,7 @@
 #include "eval.h"
 #include "lo.h"
 
-enum APEK
-{
+enum APEK : int {
     APEK_Nil = -1,
     APEK_Pos = 1,
     APEK_Rot = 2,

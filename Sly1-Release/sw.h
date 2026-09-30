@@ -40,8 +40,7 @@ struct RSE
 	int depth;
 };
 
-enum OBRF
-{
+enum OBRF : int {
 	OBRF_Min = 0,
 	OBRF_Max = 1
 };

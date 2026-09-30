@@ -3,8 +3,7 @@
 #include "wipe.h"
 #include "tn.h"
 
-enum EXITS
-{
+enum EXITS : int {
 	EXITS_Nil = -1,
 	EXITS_Blocked = 0,
 	EXITS_Unblocked = 1,
@@ -14,8 +13,7 @@ enum EXITS
 	EXITS_Exiting = 5,
 	EXITS_Max = 6
 };
-enum EDK
-{
+enum EDK : int {
 	EDK_Nil = -1,
 	EDK_DestinationKey = 0,
 	EDK_CurrentKey = 1,

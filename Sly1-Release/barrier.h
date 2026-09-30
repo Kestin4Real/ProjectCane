@@ -1,8 +1,7 @@
 #pragma once
 #include "so.h"
 
-enum BWK 
-{
+enum BWK : int {
     BWK_Nil = -1,
     BWK_None = 0,
     BWK_Pos = 1,

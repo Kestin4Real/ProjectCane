@@ -5,8 +5,7 @@
 #include "emitter.h"
 #include "ctr.h"
 
-enum SVEK 
-{
+enum SVEK : int {
     SVEK_Nil = -1,
     SVEK_BoostCollect = 0,
     SVEK_BoostOpportunity = 1,
@@ -14,15 +13,13 @@ enum SVEK
     SVEK_Feature = 3,
     SVEK_Max = 4
 };
-enum SUVGK 
-{
+enum SUVGK : int {
     SUVGK_Nil = -1,
     SUVGK_Race = 0,
     SUVGK_Chase = 1,
     SUVGK_Max = 2
 };
-enum SUVS 
-{
+enum SUVS : int {
     SUVS_Nil = -1,
     SUVS_Stop = 0,
     SUVS_Auto = 1,

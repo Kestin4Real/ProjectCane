@@ -1,8 +1,7 @@
 #pragma once
 #include "step.h"
 
-enum HFDK
-{
+enum HFDK : int {
     HFDK_Nil = -1,
     HFDK_Match = 0,
     HFDK_Left = 1,

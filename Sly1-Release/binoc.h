@@ -6,8 +6,7 @@
 
 using PFNSPHERE = void (*)(LO*, glm::vec3*, float*);
 
-enum BINOCS
-{
+enum BINOCS : int {
     BINOCS_Nil = -1,
     BINOCS_None = 0,
     BINOCS_Peek = 1,
@@ -17,8 +16,7 @@ enum BINOCS
     BINOCS_Sniper = 5,
     BINOCS_Max = 6
 };
-enum BFK
-{
+enum BFK : int {
     BFK_Nil = -1,
     BFK_None = 0,
     BFK_Clue = 1,

@@ -5,7 +5,9 @@
 #include "mgv.h"
 #include "pnt.h"
 #include <cstdio>
+#if defined(_MSC_VER)
 #include <intrin.h>
+#endif
 
 void BuildEopids()
 {
@@ -6622,9 +6624,9 @@ void BuildEopids()
 	g_aeopid[1158].optdat.ibSet = 0;
 	g_aeopid[1158].optdat.pvThunkFn = RefThunkRubyDAMAGE_BOSS;
 
-	g_aeopid[1159].optdat.ibSet = static_cast<std::intptr_t>(offsetof(RYTHM, pxfmStart));
+	g_aeopid[1159].optdat.ibSet = static_cast<std::intptr_t>(offsetof(RYTHM, pruby));
 	g_aeopid[1159].grfeopid = 18;
-	g_aeopid[1159].optdat.ibGet = static_cast<std::intptr_t>(offsetof(RYTHM, pxfmStart));
+	g_aeopid[1159].optdat.ibGet = static_cast<std::intptr_t>(offsetof(RYTHM, pruby));
 	g_aeopid[1159].otyp = OTYP_Jackb;
 
 	g_aeopid[1160].optdat.ibSet = static_cast<std::intptr_t>(offsetof(RYTHM, pjsgFinish));

@@ -1,8 +1,7 @@
 #pragma once
 #include "shdanim.h"
 
-enum EYESS
-{
+enum EYESS : int {
     EYESS_Nil = -1,
     EYESS_Open = 0,
     EYESS_Closing = 1,

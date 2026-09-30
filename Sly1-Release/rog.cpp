@@ -1078,8 +1078,9 @@ void PresetRocAccel(ROC* proc, float dt)
 {
 	PresetSoAccel(proc, dt);
 
-	if (proc->paloParent != nullptr)
+	if (proc->paloParent != nullptr) {
 		return;
+	}
 
 	glm::mat3 uprightMatrix;
 	TiltMatUpright(&proc->xf.matWorld, nullptr, &uprightMatrix);

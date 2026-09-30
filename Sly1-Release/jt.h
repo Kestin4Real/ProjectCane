@@ -39,8 +39,7 @@ extern VTJTICON g_vtjticon;
 extern JTICON g_rubyicon;
 extern JTICON g_jticon;
 
-enum SSLF
-{
+enum SSLF : int {
     SSLF_Nil = -1,
     SSLF_Right = 0,
     SSLF_Left = 1
@@ -53,8 +52,7 @@ enum : GRFTAK
     GRFTAK_Bomb = 16,
     GRFTAK_Shock = 32,
 };
-enum JTS 
-{
+enum JTS : int {
     JTS_Nil = -1,
     JTS_Stand = 0,
     JTS_Run = 1,
@@ -73,8 +71,7 @@ enum JTS
     JTS_Ball = 14,
     JTS_Max = 15
 };
-enum JTBS 
-{
+enum JTBS : int {
     JTBS_Nil = -1,
     JTBS_Jump_Init = 0,
     JTBS_Jump_Rise = 1,
@@ -142,8 +139,7 @@ enum JTBS
     JTBS_Ball_Recover = 56,
     JTBS_Max = 57
 };
-enum JTCS
-{
+enum JTCS : int {
     JTCS_Nil = -1,
     JTCS_Reach = 0,
     JTCS_Hang = 1,
@@ -155,8 +151,7 @@ enum JTCS
     JTCS_StandingSweepBack = 7,
     JTCS_Max = 8
 };
-enum JTJK 
-{
+enum JTJK : int {
     JTJK_Nil = -1,
     JTJK_Standing = 0,
     JTJK_Swinging = 1,
@@ -165,15 +160,13 @@ enum JTJK
     JTJK_Edge = 4,
     JTJK_Max = 5
 };
-enum JSGLK
-{
+enum JSGLK : int {
     JSGLK_Nil = -1,
     JSGLK_Normal = 0,
     JSGLK_Big = 1,
     JSGLK_Max = 2
 };
-enum JTJJ
-{
+enum JTJJ : int {
     JTJJ_Nil = -1,
     JTJJ_Init = 0,
     JTJJ_FullDeflection = 1,
@@ -181,8 +174,7 @@ enum JTJJ
     JTJJ_Default = 3,
     JTJJ_Max = 4
 };
-enum JTFOCK
-{
+enum JTFOCK : int {
     JTFOCK_Nil = -1,
     JTFOCK_Relax = 0,
     JTFOCK_Clamp = 1,
@@ -215,8 +207,7 @@ struct ZQE
     glm::vec3 v;
     glm::vec3 w;
 };
-enum JTPDK 
-{
+enum JTPDK : int {
     JTPDK_Nil = -1,
     JTPDK_Up = 0,
     JTPDK_Down = 1,

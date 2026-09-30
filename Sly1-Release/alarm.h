@@ -1,8 +1,7 @@
 #pragma once
 #include "break.h"
 
-enum ALARMS 
-{
+enum ALARMS : int {
     ALARMS_Nil = -1,
     ALARMS_Enabled = 0,
     ALARMS_Disabled = 1,
@@ -10,8 +9,7 @@ enum ALARMS
     ALARMS_Max = 3
 };
 
-enum ALTK
-{
+enum ALTK : int {
     ALTK_Nil = -1,
     ALTK_Trigger = 0,
     ALTK_Untrigger = 1,

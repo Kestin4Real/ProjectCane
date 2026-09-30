@@ -10,8 +10,7 @@ struct SPKS
     struct ALO* palo;
 };
 
-enum SPKK
-{
+enum SPKK : int {
     SPKK_Radial,
     SPKK_Mirror
 };

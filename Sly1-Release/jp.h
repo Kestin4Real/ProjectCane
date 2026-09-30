@@ -1,8 +1,7 @@
 #pragma once
 #include "step.h"
 
-enum JPS 
-{
+enum JPS : int {
     JPS_Nil = -1,
     JPS_Passive = 0,
     JPS_Stand = 1,

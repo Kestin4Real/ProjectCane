@@ -2,15 +2,13 @@
 class SO;
 #include "geom.h"
 
-enum PRUNE 
-{
+enum PRUNE : int {
     PRUNE_Neg = 0,
     PRUNE_Pos = 1,
     PRUNE_Mixed = 2
 };
 
-enum LSGK
-{
+enum LSGK : int {
     LSGK_Nil = -1,
     LSGK_EdgeToBsp = 0,
     LSGK_EdgeToSphere = 1,

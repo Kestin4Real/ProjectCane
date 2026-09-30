@@ -9,8 +9,7 @@ struct RIP;
 class CM;
 struct LSG;
 
-enum RIPGT 
-{
+enum RIPGT : int {
     RIPGT_Nil = -1,
     RIPGT_Default = 0,
     RIPGT_Bounce = 1,
@@ -18,8 +17,7 @@ enum RIPGT
     RIPGT_Max = 3
 };
 
-enum RIPT 
-{
+enum RIPT : int {
     RIPT_Nil = -1,
     RIPT_Rip = 0,
     RIPT_Shadow = 1,

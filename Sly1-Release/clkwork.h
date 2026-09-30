@@ -2,8 +2,7 @@
 #include "so.h"
 #include "asegbl.h"
 
-enum CWK 
-{ 
+enum CWK : int { 
     CLKWORKS_Nil = -1, 
     CLKWORKS_Phase0 = 0, 
     CLKWORKS_Phase1 = 1,

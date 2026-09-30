@@ -2,8 +2,7 @@
 #include "so.h"
 #include "chkpnt.h"
 
-enum RATS 
-{
+enum RATS : int {
     RATS_Nil = -1,
     RATS_Stopped = 0,
     RATS_Scurry = 1,

@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
 #include <algorithm>
+#include <atomic>
+#include <cstdint>
 
 typedef uint64_t TICK;
 

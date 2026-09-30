@@ -19,8 +19,7 @@ struct CBitArray
     std::uint8_t m_ab[(BitCount + 7) / 8];
 };
 
-enum GAMEWORLD 
-{
+enum GAMEWORLD : int {
     GAMEWORLD_Nil = -1,
     GAMEWORLD_Intro = 0,
     GAMEWORLD_Underwater = 1,
@@ -31,8 +30,7 @@ enum GAMEWORLD
     GAMEWORLD_Max = 6
 };
 
-enum WORLDLEVEL
-{
+enum WORLDLEVEL : int {
     WORLDLEVEL_Nil = -1,
     WORLDLEVEL_Approach = 0,
     WORLDLEVEL_Hub = 1,
@@ -228,5 +226,3 @@ extern LEVELINFO g_levelTable[46];
 
 extern int g_percentCompletion;
 extern int g_fDebugMode;
-// Startup-only developer option loaded from Debug Mode.ini.
-extern bool g_fDeveloperDebugMode;

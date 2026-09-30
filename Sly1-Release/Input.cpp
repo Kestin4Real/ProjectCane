@@ -5,20 +5,17 @@
 #include "sound.h"
 #include "transition.h"
 #include "ui.h"
-#include <cstdio>
-#include <iterator>
+#include <cmath>
 
 namespace
 {
 constexpr uint16_t JBC_SELECT   = 0x0001;
 constexpr uint16_t JBC_L3       = 0x0002;
-constexpr uint16_t JBC_START    = 0x0008;
 constexpr uint16_t JBC_UP       = 0x0010;
 constexpr uint16_t JBC_RIGHT    = 0x0020;
 constexpr uint16_t JBC_DOWN     = 0x0040;
 constexpr uint16_t JBC_LEFT     = 0x0080;
 constexpr uint16_t JBC_L2       = 0x0100;
-constexpr uint16_t JBC_R2       = 0x0200;
 constexpr uint16_t JBC_R1       = 0x0800;
 constexpr uint16_t JBC_TRIANGLE = 0x1000;
 constexpr uint16_t JBC_CIRCLE   = 0x2000;
@@ -127,23 +124,23 @@ void CodeShowPassword(uint32_t)
 }
 
 constexpr uint16_t s_codeResetWorld[] =
-    { JBC_DOWN, JBC_L2, JBC_R2, JBC_CROSS, JBC_DOWN, JBC_L2, JBC_R2, JBC_CROSS, JBC_LEFT, JBC_CIRCLE, JBC_SELECT };
+    { JBC_CROSS, JBC_SELECT, JBC_L3, JBC_DOWN, JBC_CROSS, JBC_SELECT, JBC_L3, JBC_DOWN, JBC_SQUARE, JBC_RIGHT, JBC_L2 };
 constexpr uint16_t s_codeResetCheats[] =
-    { JBC_DOWN, JBC_L2, JBC_R2, JBC_CROSS, JBC_DOWN, JBC_L2, JBC_R2, JBC_CROSS, JBC_LEFT, JBC_CIRCLE, JBC_START };
+    { JBC_CROSS, JBC_SELECT, JBC_L3, JBC_DOWN, JBC_CROSS, JBC_SELECT, JBC_L3, JBC_DOWN, JBC_SQUARE, JBC_RIGHT, JBC_R1 };
 constexpr uint16_t s_codeCheat4[] =
-    { JBC_DOWN, JBC_L2, JBC_R2, JBC_CROSS, JBC_DOWN, JBC_L2, JBC_R2, JBC_CROSS, JBC_LEFT, JBC_CIRCLE, JBC_LEFT };
+    { JBC_CROSS, JBC_SELECT, JBC_L3, JBC_DOWN, JBC_CROSS, JBC_SELECT, JBC_L3, JBC_DOWN, JBC_SQUARE, JBC_RIGHT, JBC_SQUARE };
 constexpr uint16_t s_codeCheat8[] =
-    { JBC_DOWN, JBC_L2, JBC_R2, JBC_CROSS, JBC_DOWN, JBC_L2, JBC_R2, JBC_CROSS, JBC_LEFT, JBC_CIRCLE, JBC_RIGHT };
+    { JBC_CROSS, JBC_SELECT, JBC_L3, JBC_DOWN, JBC_CROSS, JBC_SELECT, JBC_L3, JBC_DOWN, JBC_SQUARE, JBC_RIGHT, JBC_CIRCLE };
 constexpr uint16_t s_codeCheat2[] =
-    { JBC_DOWN, JBC_L2, JBC_R2, JBC_CROSS, JBC_DOWN, JBC_L2, JBC_R2, JBC_CROSS, JBC_LEFT, JBC_CIRCLE, JBC_CIRCLE };
+    { JBC_CROSS, JBC_SELECT, JBC_L3, JBC_DOWN, JBC_CROSS, JBC_SELECT, JBC_L3, JBC_DOWN, JBC_SQUARE, JBC_RIGHT, JBC_RIGHT };
 constexpr uint16_t s_codeClues[] =
-    { JBC_DOWN, JBC_L2, JBC_R2, JBC_CROSS, JBC_DOWN, JBC_L2, JBC_R2, JBC_CROSS, JBC_LEFT, JBC_CIRCLE, JBC_UP };
+    { JBC_CROSS, JBC_SELECT, JBC_L3, JBC_DOWN, JBC_CROSS, JBC_SELECT, JBC_L3, JBC_DOWN, JBC_SQUARE, JBC_RIGHT, JBC_TRIANGLE };
 constexpr uint16_t s_codeVaultFlags[] =
-    { JBC_DOWN, JBC_L2, JBC_R2, JBC_CROSS, JBC_DOWN, JBC_L2, JBC_R2, JBC_CROSS, JBC_LEFT, JBC_CIRCLE, JBC_DOWN };
+    { JBC_CROSS, JBC_SELECT, JBC_L3, JBC_DOWN, JBC_CROSS, JBC_SELECT, JBC_L3, JBC_DOWN, JBC_SQUARE, JBC_RIGHT, JBC_DOWN };
 constexpr uint16_t s_codeWorlds[] =
-    { JBC_DOWN, JBC_L2, JBC_R2, JBC_CROSS, JBC_DOWN, JBC_L2, JBC_R2, JBC_CROSS, JBC_LEFT, JBC_CIRCLE, JBC_TRIANGLE };
+    { JBC_CROSS, JBC_SELECT, JBC_L3, JBC_DOWN, JBC_CROSS, JBC_SELECT, JBC_L3, JBC_DOWN, JBC_SQUARE, JBC_RIGHT, JBC_UP };
 constexpr uint16_t s_codePassword[] =
-    { JBC_DOWN, JBC_L2, JBC_R2, JBC_CROSS, JBC_DOWN, JBC_L2, JBC_R2, JBC_CROSS, JBC_LEFT, JBC_CIRCLE, JBC_SQUARE, JBC_SQUARE, JBC_SQUARE };
+    { JBC_CROSS, JBC_SELECT, JBC_L3, JBC_DOWN, JBC_CROSS, JBC_SELECT, JBC_L3, JBC_DOWN, JBC_SQUARE, JBC_RIGHT, JBC_LEFT, JBC_LEFT, JBC_LEFT };
 
 CODE s_codes[] =
 {
@@ -299,7 +296,7 @@ void JOY::Update(GLFWwindow* window)
         if (!allowControllerInput)
             break;
 
-        if (!glfwJoystickPresent(jid) || !glfwJoystickIsGamepad(jid))
+        if (!glfwJoystickIsGamepad(jid))
             continue;
 
         GLFWgamepadstate candidate{};
@@ -682,8 +679,8 @@ bool FVibrationEnabled(GS* pgs)
 
 JOY g_joy{};
 JOY g_joyZero{};
-int g_grfjoyt;
-GRFUSR g_grfusr;
+int g_grfjoyt = 7;
+GRFUSR g_grfusr = 0;
 int vibrationSetting = 1;
 std::array<int, BTN_MAX> g_keyboardBindings = kDefaultKeyboardBindings;
 std::array<int, BTN_MAX> g_gamepadBindings = kDefaultGamepadBindings;

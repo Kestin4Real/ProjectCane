@@ -2,8 +2,7 @@
 #include "so.h"
 #include "emitter.h"
 
-enum JTHS 
-{
+enum JTHS : int {
 	JTHS_Nil = -1,
 	JTHS_Normal = 0,
 	JTHS_Damaged = 1,
@@ -11,8 +10,7 @@ enum JTHS
 	JTHS_Max = 3
 };
 
-enum PCK
-{
+enum PCK : int {
 	PCK_Nil = -1,
 	PCK_Key = 0,
 	PCK_Gold = 1,

@@ -2,8 +2,7 @@
 struct XP;
 #include "so.h"
 
-enum DZK
-{
+enum DZK : int {
 	DZK_Normal = 0,
 	DZK_Friction = 1,
 	DZK_Equality = 2

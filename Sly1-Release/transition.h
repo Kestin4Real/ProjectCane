@@ -3,8 +3,7 @@
 #include "phasemem.h"
 #include <filesystem>
 
-enum FTRANS 
-{
+enum FTRANS : int {
     GRFTRANS_None = 0,
     FTRANS_Checkpoint = 1,
     FTRANS_RetryWorld = 2,

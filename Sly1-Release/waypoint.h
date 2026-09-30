@@ -1,8 +1,7 @@
 #pragma once
 #include "alo.h"
 
-enum WPS 
-{
+enum WPS : int {
     WPS_Nil = -1,
     WPS_Passive = 0,
     WPS_Sync = 1,

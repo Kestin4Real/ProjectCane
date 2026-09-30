@@ -12,8 +12,7 @@
 
 using byte = std::uint8_t;
 
-enum BISK
-{
+enum BISK : int {
     BISK_Nil = -1,
     BISK_File = 0,
     BISK_Mem = 1

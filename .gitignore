@@ -30,4 +30,9 @@ build-output.txt
 # Extracted game data
 Sly1-Release/Worlds/
 Sly1-Release/Cutscenes/
+Worlds/
+Cutscenes/
 *.iso
+
+# Linux CMake output
+build-linux/

@@ -296,6 +296,7 @@
     <ClCompile Include="hide.cpp" />
     <ClCompile Include="hnd.cpp" />
     <ClCompile Include="hologram.cpp" />
+    <ClCompile Include="host.cpp" />
     <ClCompile Include="hubblot.cpp" />
     <ClCompile Include="hubprog.cpp" />
     <ClCompile Include="hubsel.cpp" />

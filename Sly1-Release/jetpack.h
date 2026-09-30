@@ -4,8 +4,7 @@
 
 class RWM;
 
-enum JPK
-{
+enum JPK : int {
     JETPACKS_Nil = -1,
     JETPACKS_Unknown0 = 0,
     JETPACKS_Unknown1 = 1,

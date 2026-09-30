@@ -22,8 +22,7 @@ typedef CRef(*PVTHUNKFN)(BASIC*, int, CRef*);
 
 struct BASIC;
 // Class ID
-enum CID
-{
+enum CID : int {
     CID_Nil = -1,
     CID_BASIC = 0,
     CID_LO = 1,
@@ -177,8 +176,7 @@ enum CID
 };
 
 // Object ID
-enum OID
-{
+enum OID : int {
     OID_Nil = -1,
     OID_Unknown = 0,
     OID__MERGED_STATICS = 1,
@@ -1615,13 +1613,11 @@ enum OTYP : int
     OTYP_Sma = 8352,
     OTYP_Fcst = 8353
 };
-enum OPTID 
-{
+enum OPTID : int {
     OPTID_Nil = -1
 };
 // World ID
-enum WID
-{
+enum WID : int {
     WID_Nil = -1,
     WID_stock_objects = 0,
     WID_splash = 1,
@@ -1664,8 +1660,7 @@ enum WID
     WID_Max = 38
 };
 // Audio Reverb Type
-enum REVERBK
-{
+enum REVERBK : int {
     REVERBK_Nil = -1,
     REVERBK_None = 0,
     REVERBK_StudioA = 1,
@@ -1676,8 +1671,7 @@ enum REVERBK
     REVERBK_Max = 6
 };
 // Music ID
-enum MUSID
-{
+enum MUSID : int {
     MUSID_Nil = -1,
     MUSID_Mustest = 0,
     MUSID_Ashif01 = 1,
@@ -1698,8 +1692,7 @@ enum MUSID
     MUSID_Max = 16
 };
 // SFX ID
-enum SFXID
-{
+enum SFXID : int {
     SFXID_Nil = -1,
     SFXID_CaneHandleUnlock = 0,
     SFXID_AmbElectric = 1,
@@ -2150,14 +2143,12 @@ enum SFXID
     SFXID_Snd10_Clockwerk = 446,
     SFXID_Max = 447
 };
-enum TBID
-{
+enum TBID : int {
     TBID_Nil = -1,
     TBID_Copyright = 0,
     TBID_Max = 1
 };
-enum ENSK
-{
+enum ENSK : int {
     ENSK_Get = 0,
     ENSK_Set = 1
 };

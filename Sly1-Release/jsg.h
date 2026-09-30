@@ -1,8 +1,7 @@
 #pragma once
 #include "jt.h"
 
-enum FTAK 
-{
+enum FTAK : int {
     FTAK_Nil = -1,
     FTAK_None = 0,
     FTAK_Reach = 1,
@@ -16,8 +15,7 @@ enum FTAK
     FTAK_Shock = 32
 };
 
-enum JSGEK
-{
+enum JSGEK : int {
     JSGEK_Context = 0,
     JSGEK_Cut = 1,
     JSGEK_Label = 2,
@@ -34,8 +32,7 @@ enum JSGEK
     JSGEK_Max = 13
 };
 
-enum JSGJK 
-{
+enum JSGJK : int {
     JSGJK_Nil = -1,
     JSGJK_Fall = 0,
     JSGJK_Jump = 1,

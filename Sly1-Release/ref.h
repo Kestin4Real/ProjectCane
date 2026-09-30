@@ -15,8 +15,7 @@ typedef float f32;
 typedef u32 SYMID;
 using PFNTHUNK = CRef(*)(BASIC* basic, int argc, CRef* argv);
 
-enum TAGK 
-{
+enum TAGK : int {
     TAGK_Nil = -1,
     TAGK_None = 0,
     TAGK_Set = 1,
@@ -56,7 +55,7 @@ enum TAGK
     TAGK_Err = 35,
     TAGK_Max = 36
 };
-enum BIFK {
+enum BIFK : int {
     BIFK_Nil = -1,
     BIFK_Add = 0,
     BIFK_Subtract = 1,

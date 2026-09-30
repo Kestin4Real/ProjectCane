@@ -3,8 +3,7 @@
 
 struct LSG;
 
-enum CBSK 
-{
+enum CBSK : int {
     CBSK_Nil = -1,
     CBSK_Pos = 0,
     CBSK_Neg = 1,

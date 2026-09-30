@@ -1,8 +1,7 @@
 #pragma once
 #include "po.h"
 
-enum ROVS 
-{
+enum ROVS : int {
     ROVS_Nil = -1,
     ROVS_Brake = 0,
     ROVS_Drive = 1,
@@ -10,15 +9,13 @@ enum ROVS
     ROVS_Ascend = 3,
     ROVS_Max = 4
 };
-enum ROVTS 
-{
+enum ROVTS : int {
     ROVTS_Nil = -1,
     ROVTS_Calm = 0,
     ROVTS_Firing = 1,
     ROVTS_Max = 2
 };
-enum ROHS 
-{
+enum ROHS : int {
     ROHS_Nil = -1,
     ROHS_Inactive = 0,
     ROHS_Spawn = 1,
@@ -33,8 +30,7 @@ enum ROHS
     ROHS_Dead = 10,
     ROHS_Max = 11
 };
-enum ROCS 
-{
+enum ROCS : int {
     ROCS_Nil = -1,
     ROCS_Rest = 0,
     ROCS_Hit1 = 1,
@@ -48,15 +44,13 @@ enum ROCS
     ROCS_Destroyed = 9,
     ROCS_Max = 10
 };
-enum ROSTS 
-{
+enum ROSTS : int {
     ROSTS_Nil = -1,
     ROSTS_Close = 0,
     ROSTS_Open = 1,
     ROSTS_Max = 2
 };
-enum ROPS 
-{
+enum ROPS : int {
     ROPS_Nil = -1,
     ROPS_StayPut = 0,
     ROPS_Reveal = 1,
@@ -72,8 +66,7 @@ enum ROBK : short
     ROBK_Tertiary = 2,
     ROBK_Max = 3
 };
-enum ROBS 
-{
+enum ROBS : int {
     ROBS_Nil = -1,
     ROBS_Descend = 0,
     ROBS_Instruct = 1,

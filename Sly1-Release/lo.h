@@ -9,8 +9,7 @@
 #include <vector>
 class CFrame;
 
-enum MSGID
-{
+enum MSGID : int {
     MSGID_Nil = -1,
     MSGID_callback = 0,
     MSGID_added = 1,
@@ -43,8 +42,7 @@ enum MSGID
 
 typedef void* (*PFNMQ)(LO*, MSGID, void*);
 
-enum SYMEVID 
-{
+enum SYMEVID : int {
     SYMEVID_Nil = -1,
     SYMEVID_OnPostLoad = 0,
     SYMEVID_OnUpdate = 1,

@@ -1,8 +1,7 @@
 #pragma once
 #include "so.h"
 
-enum BRPT
-{
+enum BRPT : int {
     BRPT_Nil = -1,
     BRPT_Disappear = 0,
     BRPT_Remain = 1,
@@ -17,15 +16,13 @@ struct BRP
     OID oid;
     struct LO* plo;
 };
-enum EXRK 
-{
+enum EXRK : int {
     EXRK_Nil = -1,
     EXRK_Self = 0,
     EXRK_All = 1,
     EXRK_Max = 2
 };
-enum BRKPS
-{
+enum BRKPS : int {
     BRKPS_Nil = -1,
     BRKPS_Idle = 0,
     BRKPS_Pending = 1,

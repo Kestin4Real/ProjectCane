@@ -5,8 +5,7 @@ struct TRANS;
 
 #include "transition.h"
 
-enum SEGRPT
-{
+enum SEGRPT : int {
     SEGRPT_Nil = -1,
     SEGRPT_Once = 0,
     SEGRPT_Loop = 1,
@@ -14,8 +13,7 @@ enum SEGRPT
     SEGRPT_Manual = 3,
     SEGRPT_Max = 4
 };
-enum FAPL 
-{
+enum FAPL : int {
     FAPL_Nil = -1,
     FAPL_Smooth = 1,
     FAPL_HandleEvents = 2,
@@ -23,8 +21,7 @@ enum FAPL
     FAPL_Max = 5
 };
 
-enum SEEK 
-{
+enum SEEK : int {
     SEEK_Nil = -1,
     SEEK_Start = 0,
     SEEK_Current = 1,
@@ -32,8 +29,7 @@ enum SEEK
     SEEK_EndDoEvents = 3,
     SEEK_Max = 4
 };
-enum EATYP 
-{
+enum EATYP : int {
     EATYP_Nil = -1,
     EATYP_SoundEffect = 0,
     EATYP_SoundStop = 1,

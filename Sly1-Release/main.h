@@ -1,6 +1,6 @@
 #pragma once
+#include "host_compat.h"
 #include <iostream>
-#include <windows.h>
 #include <chrono>
 #include <thread>
 

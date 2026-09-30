@@ -56,5 +56,5 @@ float UCompleteScroller(SCROLLER* pscroller)
 
 void DeleteScroller(SCROLLER* pscroller)
 {
-    DeleteSaa(reinterpret_cast<SAA*>(pscroller));
+    delete pscroller;
 }

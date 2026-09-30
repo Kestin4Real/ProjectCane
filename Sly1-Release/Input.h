@@ -17,8 +17,7 @@ struct CODE
     CODE* pcodeNext = nullptr;
 };
 
-enum JOY_BUTTON
-{
+enum JOY_BUTTON : int {
     BTN_UP,
     BTN_DOWN,
     BTN_LEFT,
@@ -38,8 +37,7 @@ enum JOY_BUTTON
     BTN_MAX
 };
 
-enum RUMK 
-{
+enum RUMK : int {
     RUMK_Nil = -1,
     RUMK_SteadyBuzz = 0,
     RUMK_LowThrob = 1,
@@ -55,16 +53,14 @@ enum RUMK
     RUMK_Max = 11
 };
 
-enum JOYID 
-{
+enum JOYID : int {
     JOYID_Nil = -1,
     JOYID_Left = 0,
     JOYID_Right = 1,
     JOYID_Max = 2
 };
 
-enum JOYS 
-{
+enum JOYS : int {
     JOYS_Nil = -1,
     JOYS_Initing = 0,
     JOYS_Searching = 1,

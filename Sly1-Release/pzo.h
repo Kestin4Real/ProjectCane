@@ -5,8 +5,7 @@
 
 class XFM;
 
-enum FSP 
-{
+enum FSP : int {
 	FSP_Nil = -1,
 	FSP_Dive = 0,
 	FSP_Ball = 1,
@@ -18,8 +17,7 @@ enum FSP
 	FSP_Max = 7
 };
 
-enum PCS 
-{
+enum PCS : int {
 	PCS_Nil = -1,
 	PCS_Collected = 0,
 	PCS_Collectible = 1,

@@ -1,5 +1,5 @@
 #pragma once
-enum LOOKK;
+enum LOOKK : int;
 struct CPMAN;
 struct CPLOOK;
 struct CPALIGN;
@@ -14,8 +14,7 @@ struct SBI;
 #include "cpaseg.h"
 #include "cptn.h"
 
-enum CMLK
-{
+enum CMLK : int {
     CMLK_Nil = -1,
     CMLK_Grfzon = 0,
     CMLK_Mrd = 1,

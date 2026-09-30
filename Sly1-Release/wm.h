@@ -6,8 +6,7 @@ constexpr int WMD_Count = 4;
 
 using WmNavTable = WORLDLEVEL[WORLDLEVEL_Count][WMD_Count];
 
-enum WMS 
-{
+enum WMS : int {
     WMS_Nil = -1,
     WMS_Hidden = 0,
     WMS_Appearing = 1,
@@ -16,8 +15,7 @@ enum WMS
     WMS_Disappearing = 4,
     WMS_Max = 5
 };
-enum WMD 
-{
+enum WMD : int {
     WMD_Nil = -1,
     WMD_Up = 0,
     WMD_Down = 1,
@@ -62,7 +60,6 @@ struct WMC : public BLOT
     float uWarpTargetGoal;
     GLuint gaoWmFan;
     GLuint gboWmFan;
-    bool fRestoreLgnr;
 };
 
 class WM : public ALO

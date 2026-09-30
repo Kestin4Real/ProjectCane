@@ -1,8 +1,7 @@
 #pragma once
 #include "step.h"
 
-enum MECHAS 
-{
+enum MECHAS : int {
     MECHAS_Nil = -1,
     MECHAS_Passive = 0,
     MECHAS_Stand = 1,

@@ -2,8 +2,7 @@
 #include "lo.h"
 #include "bez.h"
 
-enum CRVK
-{
+enum CRVK : int {
 	CRVK_Nil = -1,
 	CRVK_Linear = 0,
 	CRVK_Cubic = 1,

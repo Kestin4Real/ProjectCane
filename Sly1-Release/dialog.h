@@ -1,16 +1,14 @@
 #pragma once
 #include "alo.h"
 
-enum DIALOGK 
-{
+enum DIALOGK : int {
     DIALOGK_Nil = -1,
     DIALOGK_Binoc = 0,
     DIALOGK_Instruct = 1,
     DIALOGK_Confront = 2,
     DIALOGK_Max = 3
 };
-enum DIALOGS
-{
+enum DIALOGS : int {
     DIALOGS_Nil = -1,
     DIALOGS_Enabled = 0,
     DIALOGS_Triggered = 1,
@@ -25,8 +23,7 @@ enum DIALOGS
     DIALOGS_Max = 6
 };
 
-enum DEK
-{
+enum DEK : int {
     DEK_Nil = -1,
     DEK_PreloadVag = 0,
     DEK_SpeakerLeft = 1,
@@ -38,8 +35,7 @@ enum DEK
     DEK_ShowMovie = 7,
     DEK_Max = 8
 };
-enum DPK
-{
+enum DPK : int {
     DPK_Nil = -1,
     DPK_None = 0,
     DPK_X = 1,
@@ -59,8 +55,7 @@ enum DPK
     DPK_Max = 15
 };
 
-enum GRFDP
-{
+enum GRFDP : int {
     GRFDP_VagPreloaded = 1 << 0,
     GRFDP_SpeakerLeft = 1 << 1,
     GRFDP_SpeakerRight = 1 << 2,
